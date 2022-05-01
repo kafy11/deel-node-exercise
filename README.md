@@ -1,28 +1,10 @@
 # DEEL BACKEND TASK
 
-  
+App made with Node.js/Express.js and Sequelize that will serve a REST API. 
+Developed creating first tests with Jest and supertest, then writing the code.
 
-💫 Welcome! 🎉
-
-
-This backend exercise involves building a Node.js/Express.js app that will serve a REST API. We imagine you should spend around 3 hours at implement this feature.
-
-## Data Models
-
-> **All models are defined in src/model.js**
-
-### Profile
-A profile can be either a `client` or a `contractor`. 
-clients create contracts with contractors. contractor does jobs for clients and get paid.
-Each profile has a balance property.
-
-### Contract
-A contract between and client and a contractor.
-Contracts have 3 statuses, `new`, `in_progress`, `terminated`. contracts are considered active only when in status `in_progress`
-Contracts group jobs within them.
-
-### Job
-contractor get paid for jobs by clients under a certain contract.
+### Tests
+To run the tests, just run `npm test`. The database for the test is created in-memory to be able to run nodemon and the tests in parallel.
 
 ## Getting Set Up
 
@@ -106,21 +88,3 @@ Below is a list of the required API's for the application.
     }
 ]
 ```
-
-  
-
-## Going Above and Beyond the Requirements
-
-Given the time expectations of this exercise, we don't expect anyone to submit anything super fancy, but if you find yourself with extra time, any extra credit item(s) that showcase your unique strengths would be awesome! 🙌
-
-It would be great for example if you'd write some unit test / simple frontend demostrating calls to your fresh APIs.
-
-  
-
-## Submitting the Assignment
-
-When you have finished the assignment, create a github repository and send us the link.
-
-  
-
-Thank you and good luck! 🙏
