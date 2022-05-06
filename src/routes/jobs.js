@@ -1,5 +1,6 @@
 import express from 'express'
 import { Op } from 'sequelize'
+import { sequelize } from '../db'
 import { getProfile } from '../middleware/getProfile'
 
 const router = express.Router()
@@ -55,18 +56,15 @@ router.post('/jobs/:job_id/pay', getProfile, async (req, res) => {
         }
     })
 
-    await Profile.update({ balance: contractor.balance + price }, {
-        where: { id: contractor.id }
-    })
+    await sequelize.transaction(async (transaction) => {
+        contractor.balance += price 
+        client.balance -= price 
+        await contractor.save({ transaction })
+        await client.save({ transaction })
 
-    await Profile.update({ balance: client.balance - price }, {
-        where: { id: client.id }
-    })
-
-    await Job.update({ paid: true }, {
-        where: { 
-            ContractId: job_id,
-            paid: { [Op.not]: true }
+        for(const job of jobs){
+            job.paid = true 
+            await job.save({ transaction })
         }
     })
 
